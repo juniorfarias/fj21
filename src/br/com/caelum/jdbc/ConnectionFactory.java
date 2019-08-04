@@ -7,11 +7,12 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 	public Connection getConnection() throws ClassNotFoundException {
 		try {
+			//Class.forName("com.mysql.cj.jdbc.Driver");
 			Class.forName("com.mysql.jdbc.Driver");
 			return DriverManager.getConnection(
-					"jdbc:mysql://127.0.0.1:3306/fj21", "root", "root");
+					"jdbc:mysql://localhost:3306/fj21?autoReconnect=true&useSSL=false", "root", "root");
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException("Erro: " + e.getMessage());
 		}
 	}
 }
